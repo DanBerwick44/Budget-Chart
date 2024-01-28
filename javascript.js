@@ -1,8 +1,7 @@
-document.getElementById('file').addEventListener('change', function(Event){
- 
-    console.log('File obtained:', Event.target.files[0])
-    
-    Papa.parse(Event.target.files[0],{
+var activeFile = []
+function parseData(activeFile){
+
+    Papa.parse(activeFile,{
         dynamicTyping: false,
         header: true,
         complete: function(results){
@@ -15,9 +14,40 @@ document.getElementById('file').addEventListener('change', function(Event){
              
         })
 }
-)
 
-//document.getElementsByClassName('updateTrigger').addEventListener('change', spendingChart.update())
+document.getElementById('file').addEventListener('change', function (Event){
+    activeFile = Event.target.files[0]
+    
+    parseData(activeFile)
+    //Papa.parse(Event.target.files[0],{
+    //    dynamicTyping: false,
+     //   header: true,
+    //    complete: function(results){
+    //        console.log('data parse complete')
+      //      var parsedData = results.data
+    //        buildChart(parsedData)
+        //console.log(parsedData)
+       // }
+            
+             
+        })
+//}
+//)
+
+function resetCanvas(){
+    document.getElementById('spendingChart').remove()
+    let newCanvas = document.createElement('canvas')
+    newCanvas.setAttribute('id', 'spendingChart')
+    document.getElementById('canvasContainer').appendChild(newCanvas)
+    parseData(activeFile)
+}
+
+const updateTriggers = document.getElementsByClassName('updateTrigger')
+for(let i=0; i<updateTriggers.length; i++){
+    updateTriggers[i].addEventListener('change', resetCanvas)
+}
+
+addEventListener('change', resetCanvas())
 // Updates chart on any change to objects in a class
 
 function graphTypeSelector(){
