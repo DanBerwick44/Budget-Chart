@@ -17,6 +17,9 @@ document.getElementById('file').addEventListener('change', function(Event){
 }
 )
 
+//document.getElementsByClassName('updateTrigger').addEventListener('change', spendingChart.update())
+// Updates chart on any change to objects in a class
+
 function graphTypeSelector(){
     return document.getElementById('graphType').value
 }
@@ -48,9 +51,9 @@ function sortData(inputFile, outputType){
 
 
 function buildChart(parsedData){
-    let myChart = document.getElementById('myChart').getContext('2d');
+    let spendingChart = document.getElementById('spendingChart').getContext('2d');
 
-    new Chart(myChart, {
+    new Chart(spendingChart, {
         type: graphTypeSelector(),
         data:{
             labels:sortData(parsedData,'MERCHANT'),
