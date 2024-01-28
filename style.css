@@ -1,0 +1,10 @@
+*{
+    background-color:floralwhite
+}
+
+#spendingChart {
+    margin: auto;
+    background-color: whitesmoke;
+    max-height: 600px;
+    max-width: 600px;
+}

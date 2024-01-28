@@ -17,22 +17,9 @@ function parseData(activeFile){
 
 document.getElementById('file').addEventListener('change', function (Event){
     activeFile = Event.target.files[0]
-    
     parseData(activeFile)
-    //Papa.parse(Event.target.files[0],{
-    //    dynamicTyping: false,
-     //   header: true,
-    //    complete: function(results){
-    //        console.log('data parse complete')
-      //      var parsedData = results.data
-    //        buildChart(parsedData)
-        //console.log(parsedData)
-       // }
-            
-             
+    //Listener for file input
         })
-//}
-//)
 
 function resetCanvas(){
     document.getElementById('spendingChart').remove()
@@ -76,8 +63,6 @@ function sortData(inputFile, outputType){
     return results
 
     }
-//Add function to sort 'check' and non-discretionary costs as a single element.
-//Still need to condense duplicates
 
 
 function buildChart(parsedData){
@@ -96,5 +81,5 @@ function buildChart(parsedData){
         options:{}
     })}
 
-    // drop menu to change graph type
-    // checkbox for total
+    // to-do: sort entries by alphabetical/value; condense duplicates
+    // stretch goal: Add function to sort 'check' and non-discretionary costs as a single element.
