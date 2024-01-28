@@ -17,18 +17,27 @@ document.getElementById('file').addEventListener('change', function(Event){
 }
 )
 
+function graphTypeSelector(){
+    return document.getElementById('graphType').value
+}
+
 function sortData(inputFile, outputType){
     //Compatible with csv's as formatted by Monarch
     let results = []
     inputFile.forEach(element => {
+
+
         if (element.Spending == undefined){return} //handles that pesky null-value entry in the csv
         let workingValue = element[outputType]
-        console.log('workingValue assigned',workingValue)
+        
+        if (document.getElementById('toggleSpendingTotal').checked == false){ 
+            if (element.MERCHANT == 'Total'){return}
+        }
+
         if (outputType == 'Spending'){  //trims dollar-sign on monetary values
             workingValue = workingValue.slice(1)
         }
             results.push(workingValue);
-            console.log(workingValue, typeof(workingValue))
             console.log("sorting data in category",outputType)
     });
     return results
@@ -42,7 +51,7 @@ function buildChart(parsedData){
     let myChart = document.getElementById('myChart').getContext('2d');
 
     new Chart(myChart, {
-        type:'bar',
+        type: graphTypeSelector(),
         data:{
             labels:sortData(parsedData,'MERCHANT'),
             datasets:[{

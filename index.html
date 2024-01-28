@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="javascript.js" defer></script>
+</head>
+   
 <body>
+    <input type="checkbox" id="toggleSpendingTotal">
+        <label for="toggleSpendingTotal"> Include total Spending in chart? </label>
+    <select name="Graph Type" id="graphType">
+        <option value="bar"> Bar Chart </option>
+        <option value="doughnut"> Doughnut Chart</option>
+        <option value="pie"> Pie Chart </option>
+    </select>
     <input type="file" accept=".csv" id="file">
+    <div class="container"> 
+        <canvas id="myChart" width="400" height="200"> </canvas>
+    </div>
 
     
 </body>
