@@ -20,15 +20,22 @@ document.getElementById('file').addEventListener('change', function(Event){
 function sortData(inputFile, outputType){
     //Compatible with csv's as formatted by Monarch
     let results = []
-    let category = outputType
     inputFile.forEach(element => {
-            results.push(element[outputType]);
-            console.log("sorting data in category",category)
+        if (element.Spending == undefined){return} //handles that pesky null-value entry in the csv
+        let workingValue = element[outputType]
+        console.log('workingValue assigned',workingValue)
+        if (outputType == 'Spending'){  //trims dollar-sign on monetary values
+            workingValue = workingValue.slice(1)
+        }
+            results.push(workingValue);
+            console.log(workingValue, typeof(workingValue))
+            console.log("sorting data in category",outputType)
     });
     return results
 
     }
-
+//Add function to sort 'check' and non-discretionary costs as a single element.
+//Still need to condense duplicates
 
 
 function buildChart(parsedData){
@@ -46,3 +53,6 @@ function buildChart(parsedData){
         },
         options:{}
     })}
+
+    // drop menu to change graph type
+    // checkbox for total
